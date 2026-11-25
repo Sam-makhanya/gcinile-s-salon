@@ -1,291 +1,1082 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gcinile’s Hair Beauty Salon</title>
+<title>Gcinile’s Hair Beauty Salon | Luxury Hair & Braiding Studio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN for Modern Responsive Layout -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Google Fonts: Cinzel & Cormorant Garamond for Editorial Luxury, Plus Jakarta Sans for Clean UI -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Font Awesome for Crisp Luxury & Social Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    gold: {
+                        DEFAULT: '#c5a059',
+                        light: '#dec286',
+                        dark: '#9e7c38',
+                    },
+                    obsidian: '#0f0f0f',
+                    charcoal: '#181818',
+                    ivory: '#faf8f5',
+                    sand: '#f2ede4',
+                },
+                fontFamily: {
+                    display: ['Cinzel', 'serif'],
+                    editorial: ['Cormorant Garamond', 'serif'],
+                    sans: ['Plus Jakarta Sans', 'sans-serif'],
+                }
+            }
+        }
+    }
+</script>
 
 <style>
-:root {
-    --gold:#c5a059;
-    --black:#111;
-    --white:#fff;
-    --soft:#f8f6f3;
-}
+    /* Custom Luxury Styling & Smooth Micro-Interactions */
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #faf8f5;
+        color: #141414;
+        overflow-x: hidden;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+    /* Glassmorphism Sticky Header */
+    .glass-nav {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(197, 160, 89, 0.22);
+    }
 
-body{
-    font-family:'Poppins',sans-serif;
-    background:var(--soft);
-    color:var(--black);
-}
+    /* Active Navigation Indicator */
+    .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+    }
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background-color: #c5a059;
+        transition: width 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 100%;
+    }
+    .nav-link.active {
+        color: #c5a059;
+    }
 
-/* NAV */
-nav{
-    display:flex;
-    justify-content:space-between;
-    padding:20px 5%;
-    background:white;
-    border-bottom:1px solid #eee;
-}
+    /* Hero Backdrop with Subtle Zoom Animation */
+    .hero-bg {
+        background-image: linear-gradient(
+            to right,
+            rgba(12, 12, 12, 0.88) 0%,
+            rgba(12, 12, 12, 0.65) 55%,
+            rgba(12, 12, 12, 0.45) 100%
+        ), url('WhatsApp Image 2026-11-25 at 10.19.30.jpeg');
+        background-size: cover;
+        background-position: top center;
+    }
 
-.logo{
-    font-family:'Cinzel',serif;
-    color:var(--gold);
-    font-size:1.8rem;
-}
+    /* Card Image Framing so Hairstyles & Crowns are Never Cropped */
+    .style-img {
+        object-fit: cover;
+        object-position: top center;
+        transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .style-card:hover .style-img {
+        transform: scale(1.06);
+    }
 
-/* HERO */
-.hero{
-    height:70vh;
-    background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('p1.jpeg');
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    color:white;
-    text-align:center;
-}
-
-.hero h1{
-    font-size:3.5rem;
-}
-
-.hero p{
-    margin:10px 0;
-}
-
-.btn{
-    background:var(--gold);
-    padding:12px 30px;
-    border-radius:30px;
-    text-decoration:none;
-    color:black;
-    font-weight:bold;
-    border:none;
-    cursor:pointer;
-}
-
-/* SECTION */
-.section{
-    padding:60px 5%;
-    text-align:center;
-}
-
-.section h2{
-    color:var(--gold);
-    margin-bottom:30px;
-}
-
-/* GRID */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-}
-
-.card img{
-    width:100%;
-    height:300px;
-    object-fit:cover;
-}
-
-.card-content{
-    padding:20px;
-}
-
-.price{
-    color:var(--gold);
-    font-weight:bold;
-}
-
-/* BUTTON */
-.book-btn{
-    display:block;
-    margin-top:10px;
-    background:#25D366;
-    color:white;
-    padding:10px;
-    text-align:center;
-    border-radius:8px;
-    text-decoration:none;
-    cursor:pointer;
-}
-
-/* FORM */
-form{
-    max-width:500px;
-    margin:auto;
-    text-align:left;
-}
-
-form input, form select{
-    width:100%;
-    padding:12px;
-    margin:10px 0 20px;
-    border-radius:8px;
-    border:1px solid #ccc;
-}
-
-form label{
-    font-weight:500;
-}
-
-/* FOOTER */
-footer{
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #141414;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #c5a059;
+        border-radius: 4px;
+    }
 </style>
 </head>
 
-<body>
+<body class="antialiased selection:bg-gold selection:text-white">
 
-<nav>
-    <div class="logo">GCINILE'S SALON</div>
-</nav>
+    <!-- ==================== STICKY NAVIGATION BAR ==================== -->
+    <header class="glass-nav sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Brand Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-obsidian border border-gold/50 flex items-center justify-center text-gold shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-crown text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="font-display text-lg sm:text-xl font-bold tracking-wider text-obsidian block leading-none">
+                            GCINILE’S <span class="text-gold">SALON</span>
+                        </span>
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-neutral-500 font-medium block mt-1">
+                            Hair Beauty Studio
+                        </span>
+                    </div>
+                </a>
 
-<section class="hero">
-    <h1>Luxury Women's Hair</h1>
-    <p>Beauty • Confidence • Elegance</p>
-    <a href="#styles" class="btn">View Styles</a>
-</section>
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
+                    <a href="#home" class="nav-link active text-sm font-medium text-neutral-800 hover:text-gold">Home</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-neutral-800 hover:text-gold">About</a>
+                    <a href="#services" class="nav-link text-sm font-medium text-neutral-800 hover:text-gold">Services</a>
+                    <a href="#booking" class="nav-link text-sm font-medium text-neutral-800 hover:text-gold">Booking</a>
+                    <a href="#contacts" class="nav-link text-sm font-medium text-neutral-800 hover:text-gold">Contacts</a>
+                </nav>
 
-<section class="section" id="styles">
-    <h2>Our Hairstyles</h2>
+                <!-- Desktop Quick CTA & Mobile Menu Toggle -->
+                <div class="flex items-center gap-3">
+                    <a href="#booking" class="hidden sm:inline-flex items-center gap-2 bg-obsidian hover:bg-gold text-white hover:text-obsidian text-xs font-semibold uppercase tracking-wider px-5 py-3 rounded-full transition-all duration-300 shadow-sm">
+                        <i class="fa-regular fa-calendar-check"></i>
+                        <span>Book Now</span>
+                    </a>
 
-    <div class="grid">
-
-        <div class="card">
-            <img src="p1.jpeg">
-            <div class="card-content">
-                <h3>Royal Knotless Braids</h3>
-                <p>Premium neat braids for a classy look</p>
-                <span class="price">From R350</span>
-                <div class="book-btn" onclick="selectStyle('Royal Knotless Braids')">Book Now</div>
+                    <!-- Mobile Hamburger Button -->
+                    <button id="mobileMenuBtn" type="button" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-xl text-obsidian hover:bg-sand transition-colors">
+                        <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div class="card">
-            <img src="p2.jpeg">
-            <div class="card-content">
-                <h3>Curly Ponytail Weave</h3>
-                <p>Elegant volume with sleek finish</p>
-                <span class="price">From R250</span>
-                <div class="book-btn" onclick="selectStyle('Curly Ponytail Weave')">Book Now</div>
+        <!-- Mobile Dropdown Navigation Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-neutral-100 px-6 pt-4 pb-6 space-y-3 shadow-xl">
+            <a href="#home" class="mobile-nav-item block py-2.5 px-3 rounded-xl text-base font-medium text-neutral-800 hover:bg-sand hover:text-gold transition-colors">Home</a>
+            <a href="#about" class="mobile-nav-item block py-2.5 px-3 rounded-xl text-base font-medium text-neutral-800 hover:bg-sand hover:text-gold transition-colors">About</a>
+            <a href="#services" class="mobile-nav-item block py-2.5 px-3 rounded-xl text-base font-medium text-neutral-800 hover:bg-sand hover:text-gold transition-colors">Services</a>
+            <a href="#booking" class="mobile-nav-item block py-2.5 px-3 rounded-xl text-base font-medium text-neutral-800 hover:bg-sand hover:text-gold transition-colors">Booking</a>
+            <a href="#contacts" class="mobile-nav-item block py-2.5 px-3 rounded-xl text-base font-medium text-neutral-800 hover:bg-sand hover:text-gold transition-colors">Contacts</a>
+            <div class="pt-2">
+                <a href="#booking" class="mobile-nav-item flex items-center justify-center gap-2 w-full bg-gold text-obsidian font-semibold py-3 rounded-full shadow-md">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Book Appointment</span>
+                </a>
             </div>
         </div>
+    </header>
 
-        <div class="card">
-            <img src="p3.jpeg">
-            <div class="card-content">
-                <h3>Designer Stitch Braids</h3>
-                <p>Creative and stylish braid patterns</p>
-                <span class="price">From R300</span>
-                <div class="book-btn" onclick="selectStyle('Designer Stitch Braids')">Book Now</div>
+    <!-- ==================== 1. HOME / HERO SECTION ==================== -->
+    <section id="home" class="hero-bg relative min-h-[88vh] flex items-center text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+            <div class="max-w-2xl">
+                <!-- Luxury Pill Badge -->
+                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-gold/40 text-gold-light text-xs uppercase tracking-[0.2em] font-medium mb-6">
+                    <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                    <span>Luxury Women’s Hair Studio</span>
+                </div>
+
+                <!-- Hero Heading -->
+                <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-wide text-white mb-6">
+                    Crowning Queens with <span class="text-gold italic font-editorial font-semibold">Timeless</span> Elegance
+                </h1>
+
+                <!-- Hero Description -->
+                <p class="text-neutral-200 text-base sm:text-lg leading-relaxed mb-8 font-light max-w-xl">
+                    Experience precision parting, tension-free protective braiding, and bespoke sleek styling tailored to celebrate your natural beauty and confidence.
+                </p>
+
+                <!-- Dual Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a href="#services" class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-obsidian font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-300 shadow-lg hover:-translate-y-0.5">
+                        <span>Explore Services</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#booking" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-semibold text-sm uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-300">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                        <span>Book Appointment</span>
+                    </a>
+                </div>
+
+                <!-- Quick Salon Highlights -->
+                <div class="grid grid-cols-3 gap-4 pt-8 border-t border-white/15 max-w-lg">
+                    <div>
+                        <p class="font-display text-xl sm:text-2xl font-bold text-gold">Tue–Sun</p>
+                        <p class="text-xs text-neutral-300 mt-0.5">Open Weekly</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-xl sm:text-2xl font-bold text-gold">10+</p>
+                        <p class="text-xs text-neutral-300 mt-0.5">Signature Styles</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-xl sm:text-2xl font-bold text-gold">100%</p>
+                        <p class="text-xs text-neutral-300 mt-0.5">Protective Care</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
+    <!-- ==================== 2. ABOUT SECTION ==================== -->
+    <section id="about" class="py-20 lg:py-28 bg-ivory">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Editorial Photo Collage -->
+                <div class="lg:col-span-6 relative">
+                    <div class="grid grid-cols-12 gap-4 items-center">
+                        <div class="col-span-7">
+                            <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-white aspect-[3/4]">
+                                <img src="WhatsApp Image 2026-11-25 at 10.19.31 (1).jpeg" alt="Fulani Goddess Feed-In Braids at Gcinile's Salon" class="w-full h-full object-cover object-top">
+                            </div>
+                        </div>
+                        <div class="col-span-5 space-y-4">
+                            <div class="rounded-2xl overflow-hidden shadow-xl border-4 border-white aspect-[3/4]">
+                                <img src="WhatsApp Image 2026-11-25 at 10.19.32 (1).jpeg" alt="Intricate Stitch Ponytail Artistry" class="w-full h-full object-cover object-top">
+                            </div>
+                            <!-- Floating Gold Experience Card -->
+                            <div class="bg-obsidian text-white p-5 rounded-2xl shadow-xl border border-gold/30">
+                                <div class="flex items-center gap-3 mb-1">
+                                    <i class="fa-solid fa-sparkles text-gold"></i>
+                                    <span class="font-display text-sm font-bold text-gold uppercase tracking-wider">Queen Standard</span>
+                                </div>
+                                <p class="text-xs text-neutral-300 leading-relaxed">
+                                    Neat scalp parting, healthy edge care & long-lasting luxury finishes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Brand Story & Pillars -->
+                <div class="lg:col-span-6">
+                    <span class="text-gold font-semibold text-xs uppercase tracking-[0.25em] block mb-3">
+                        About Our Studio
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-obsidian leading-tight mb-6">
+                        Where Artistry Meets <span class="text-gold">Healthy Hair Care</span>
+                    </h2>
+                    <p class="text-neutral-600 text-base leading-relaxed mb-5">
+                        At <strong>Gcinile’s Hair Beauty Salon</strong>, every appointment is a personalized beauty experience. We specialize in intricate stitch cornrows, lightweight knotless braids, goddess curls, and sculpted sleek installs designed to turn heads while protecting your natural hair and edges.
+                    </p>
+                    <p class="text-neutral-600 text-base leading-relaxed mb-8">
+                        Whether you are preparing for a special celebration, refreshing your everyday look, or booking a bold new colour blend, our skilled stylists deliver meticulous craftsmanship in a warm, welcoming environment.
+                    </p>
+
+                    <!-- Feature Pillars -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-neutral-100 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-sand text-gold flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-sm text-obsidian">Precision Parting</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Crisp, symmetrical geometric & swirl braid patterns.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-white border border-neutral-100 shadow-sm">
+                            <div class="w-10 h-10 rounded-xl bg-sand text-gold flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-sm text-obsidian">Tension-Free Comfort</h3>
+                                <p class="text-xs text-neutral-500 mt-1">Gentle knotless techniques that protect your hairline.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#services" class="inline-flex items-center gap-2 text-obsidian font-semibold text-sm border-b-2 border-gold pb-1 hover:text-gold transition-colors">
+                        <span>Browse Our Signature Catalogue</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. SERVICES & GALLERY SECTION ==================== -->
+    <section id="services" class="py-20 lg:py-28 bg-white border-t border-neutral-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-gold font-semibold text-xs uppercase tracking-[0.25em] block mb-3">
+                    Signature Menu
+                </span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-obsidian mb-4">
+                    Our Hairstyles & Services
+                </h2>
+                <p class="text-neutral-500 text-sm sm:text-base">
+                    Click any photo to inspect the braid detail up close, or select <strong>Book This Style</strong> to reserve your slot via WhatsApp.
+                </p>
+            </div>
+
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-12" role="tablist" aria-label="Hairstyle Categories">
+                <button type="button" onclick="filterStyles('all', this)" class="filter-btn active bg-obsidian text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition-all shadow-sm">
+                    All Styles (10)
+                </button>
+                <button type="button" onclick="filterStyles('knotless', this)" class="filter-btn bg-sand text-neutral-700 hover:bg-gold hover:text-obsidian text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition-all">
+                    Braids & Knotless
+                </button>
+                <button type="button" onclick="filterStyles('stitch', this)" class="filter-btn bg-sand text-neutral-700 hover:bg-gold hover:text-obsidian text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition-all">
+                    Feed-In & Stitch Art
+                </button>
+                <button type="button" onclick="filterStyles('sleek', this)" class="filter-btn bg-sand text-neutral-700 hover:bg-gold hover:text-obsidian text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition-all">
+                    Sleek Ponytails & Bobs
+                </button>
+            </div>
+
+            <!-- Hairstyles Grid (All 10 Uploaded Images) -->
+            <div id="stylesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+
+                <!-- 1. Royal Ombre Knotless Braids -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="knotless">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.30.jpeg', 'Royal Ombre Knotless Braids', 'From R380')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.30.jpeg" alt="Royal Ombre Knotless Braids" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Knotless
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex justify-between items-start gap-2 mb-2">
+                                <h3 class="font-display text-base font-bold text-obsidian leading-snug">Royal Ombre Knotless Braids</h3>
+                            </div>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Waist-grazing black-to-honey-blonde knotless braids finished with soft barrel curls.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R380</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Royal Ombre Knotless Braids')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 2. Triple Bun Stitch Cornrows -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="stitch">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.30 (1).jpeg', 'Triple Bun Stitch Cornrows', 'From R280')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.30 (1).jpeg" alt="Triple Bun Stitch Cornrows" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Stitch Art
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">Triple Bun Stitch Cornrows</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Sculpted curved stitch cornrows gathered into three regal braided top knots with laid edges.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R280</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Triple Bun Stitch Cornrows')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 3. Fulani Goddess Feed-In Braids -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="stitch">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.31 (1).jpeg', 'Fulani Goddess Feed-In Braids', 'From R350')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.31 (1).jpeg" alt="Fulani Goddess Feed-In Braids" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Feed-In
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">Fulani Goddess Feed-In Braids</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Sleek straight-back feed-in cornrows cascading into voluminous water-wave curls.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R350</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Fulani Goddess Feed-In Braids')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 4. Burgundy Swirl Designer Braids -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="stitch">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.31.jpeg', 'Burgundy Swirl Designer Braids', 'From R320')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.31.jpeg" alt="Burgundy Swirl Designer Braids" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Designer Bob
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">Burgundy Swirl Designer Braids</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Rich burgundy & black swirl stitch bob finished with bouncy spiral-curled tips.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R320</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Burgundy Swirl Designer Braids')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 5. High Braided Ponytail with Swirl Art -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="stitch">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.32 (1).jpeg', 'High Braided Ponytail with Swirl Art', 'From R300')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.32 (1).jpeg" alt="High Braided Ponytail with Swirl Art" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Stitch Art
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">High Braided Ponytail with Swirl Art</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Intricate floral side-swirl stitch braids swept into a long auburn-tinted braided ponytail.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R300</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('High Braided Ponytail with Swirl Art')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 6. Boho Goddess Cornrow Braids -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="knotless">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.32 (2).jpeg', 'Boho Goddess Cornrow Braids', 'From R360')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.32 (2).jpeg" alt="Boho Goddess Cornrow Braids" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Boho Braids
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">Boho Goddess Cornrow Braids</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Curved Fulani stitch crown flowing into long braids with romantic face-framing curls.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R360</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Boho Goddess Cornrow Braids')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 7. Sculpted Side-Part Sleek Ponytail -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="sleek">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.32 (3).jpeg', 'Sculpted Side-Part Sleek Ponytail', 'From R250')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.32 (3).jpeg" alt="Sculpted Side-Part Sleek Ponytail" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Sleek Style
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">Sculpted Side-Part Sleek Ponytail</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Glass-shine sleek high ponytail featuring a razor-sharp side part and sculpted swoop.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R250</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Sculpted Side-Part Sleek Ponytail')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 8. Waist-Length Honey Blonde Knotless Braids -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="knotless">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.32.jpeg', 'Waist-Length Honey Blonde Knotless Braids', 'From R400')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.32.jpeg" alt="Waist-Length Honey Blonde Knotless Braids" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Knotless
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">Waist-Length Honey Blonde Knotless</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Full-density waist-length knotless box braids blending rich brunette into golden blonde curls.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R400</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Waist-Length Honey Blonde Knotless Braids')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 9. Side-Part Sleek Bob Install -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="sleek">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.33 (1).jpeg', 'Side-Part Sleek Bob Install', 'From R300')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.33 (1).jpeg" alt="Side-Part Sleek Bob Install" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Sleek Bob
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">Side-Part Sleek Bob Install</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Silky straight shoulder-length bob with a crisp side part and natural flat finish.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R300</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Side-Part Sleek Bob Install')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 10. Extra-Long Sleek Precision Ponytail -->
+                <article class="style-card group bg-ivory rounded-2xl overflow-hidden border border-neutral-200/70 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col" data-category="sleek">
+                    <div class="relative h-80 overflow-hidden bg-neutral-200 cursor-pointer" onclick="openLightbox('WhatsApp Image 2026-11-25 at 10.19.33 (2).jpeg', 'Extra-Long Sleek Precision Ponytail', 'From R260')">
+                        <img src="WhatsApp Image 2026-11-25 at 10.19.33 (2).jpeg" alt="Extra-Long Sleek Precision Ponytail" class="style-img w-full h-full">
+                        <span class="absolute top-3 left-3 bg-obsidian/80 backdrop-blur-md text-gold text-[11px] font-semibold uppercase tracking-wider px-3 py-1 rounded-full">
+                            Sleek Style
+                        </span>
+                        <span class="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 text-obsidian flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow justify-between">
+                        <div>
+                            <h3 class="font-display text-base font-bold text-obsidian leading-snug mb-2">Extra-Long Sleek Precision Ponytail</h3>
+                            <p class="text-xs text-neutral-500 leading-relaxed mb-4">
+                                Ultra-sleek, extra-long flowing ponytail with clean geometric parting and smooth hold.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-neutral-200/80">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs text-neutral-400 uppercase tracking-wider">Starting Price</span>
+                                <span class="font-display text-base font-bold text-gold-dark">From R260</span>
+                            </div>
+                            <button type="button" onclick="selectStyle('Extra-Long Sleek Precision Ponytail')" class="w-full py-2.5 px-4 rounded-xl bg-obsidian hover:bg-gold text-white hover:text-obsidian font-semibold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+                                <span>Book This Style</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. BOOKING SECTION ==================== -->
+    <section id="booking" class="py-20 lg:py-28 bg-ivory border-t border-neutral-200/60">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl border border-neutral-100 overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+                
+                <!-- Left Booking Concierge Info Panel -->
+                <div class="lg:col-span-5 bg-obsidian text-white p-8 sm:p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden">
+                    <div class="relative z-10">
+                        <span class="text-gold text-xs font-semibold uppercase tracking-[0.25em] block mb-3">
+                            Reservations
+                        </span>
+                        <h2 class="font-display text-3xl font-bold text-white leading-tight mb-4">
+                            Book Your <span class="text-gold">Crown</span> Session
+                        </h2>
+                        <p class="text-neutral-300 text-sm leading-relaxed mb-8">
+                            Complete your appointment details and send your request directly to our salon WhatsApp desk for instant confirmation.
+                        </p>
+
+                        <!-- Salon Prep Guidelines -->
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-full bg-gold/15 border border-gold/40 text-gold flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-check text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Hair Preparation</h4>
+                                    <p class="text-xs text-neutral-400 mt-0.5">Please arrive with clean, detangled, and blow-dried hair for the neatest parting.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-full bg-gold/15 border border-gold/40 text-gold flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-regular fa-clock text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Punctuality Policy</h4>
+                                    <p class="text-xs text-neutral-400 mt-0.5">Kindly notify us via WhatsApp if you are running late or need to reschedule.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-full bg-gold/15 border border-gold/40 text-gold flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-tag text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Length & Colour Customization</h4>
+                                    <p class="text-xs text-neutral-400 mt-0.5">Final pricing may vary slightly depending on desired braid length or colour blends.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 mt-10 pt-6 border-t border-white/10">
+                        <p class="text-xs text-neutral-400 uppercase tracking-wider">Direct WhatsApp Desk</p>
+                        <p class="font-display text-lg text-gold font-bold mt-1">+27 79 439 7018</p>
+                    </div>
+                </div>
+
+                <!-- Right Interactive Booking Form -->
+                <div class="lg:col-span-7 p-8 sm:p-10 lg:p-12">
+                    <form id="bookingForm" onsubmit="return false;" class="space-y-5">
+                        <!-- Inline Feedback Alert Box -->
+                        <div id="notification-box" class="hidden rounded-xl p-4 text-sm font-medium border"></div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">First Name *</label>
+                                <input type="text" id="name" placeholder="e.g. Thando" required class="w-full px-4 py-3 rounded-xl bg-ivory border border-neutral-200 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors">
+                            </div>
+                            <div>
+                                <label for="surname" class="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">Surname *</label>
+                                <input type="text" id="surname" placeholder="e.g. Mokoena" required class="w-full px-4 py-3 rounded-xl bg-ivory border border-neutral-200 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="style" class="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">Select Hairstyle *</label>
+                            <select id="style" class="w-full px-4 py-3 rounded-xl bg-ivory border border-neutral-200 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors">
+                                <option value="Royal Ombre Knotless Braids">Royal Ombre Knotless Braids (From R380)</option>
+                                <option value="Triple Bun Stitch Cornrows">Triple Bun Stitch Cornrows (From R280)</option>
+                                <option value="Fulani Goddess Feed-In Braids">Fulani Goddess Feed-In Braids (From R350)</option>
+                                <option value="Burgundy Swirl Designer Braids">Burgundy Swirl Designer Braids (From R320)</option>
+                                <option value="High Braided Ponytail with Swirl Art">High Braided Ponytail with Swirl Art (From R300)</option>
+                                <option value="Boho Goddess Cornrow Braids">Boho Goddess Cornrow Braids (From R360)</option>
+                                <option value="Sculpted Side-Part Sleek Ponytail">Sculpted Side-Part Sleek Ponytail (From R250)</option>
+                                <option value="Waist-Length Honey Blonde Knotless Braids">Waist-Length Honey Blonde Knotless Braids (From R400)</option>
+                                <option value="Side-Part Sleek Bob Install">Side-Part Sleek Bob Install (From R300)</option>
+                                <option value="Extra-Long Sleek Precision Ponytail">Extra-Long Sleek Precision Ponytail (From R260)</option>
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label for="date" class="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">Preferred Date *</label>
+                                <input type="date" id="date" required class="w-full px-4 py-3 rounded-xl bg-ivory border border-neutral-200 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors">
+                            </div>
+                            <div>
+                                <label for="time" class="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">Preferred Time *</label>
+                                <input type="time" id="time" required class="w-full px-4 py-3 rounded-xl bg-ivory border border-neutral-200 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="notes" class="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-2">Additional Notes (Optional)</label>
+                            <input type="text" id="notes" placeholder="e.g. Colour #1B/27, waist length, or bringing own hairpiece" class="w-full px-4 py-3 rounded-xl bg-ivory border border-neutral-200 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors">
+                        </div>
+
+                        <div class="pt-3 flex flex-col sm:flex-row gap-3">
+                            <button type="button" onclick="book()" class="flex-1 bg-[#25D366] hover:bg-[#1fb858] text-white font-bold text-xs uppercase tracking-wider py-4 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2.5">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>Confirm via WhatsApp</span>
+                            </button>
+                            <button type="button" onclick="cancel()" class="sm:w-auto bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-semibold text-xs uppercase tracking-wider py-4 px-6 rounded-xl transition-colors">
+                                Request Cancellation
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. CONTACTS SECTION ==================== -->
+    <section id="contacts" class="py-20 bg-white border-t border-neutral-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-gold font-semibold text-xs uppercase tracking-[0.25em] block mb-3">
+                    Get In Touch
+                </span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-obsidian mb-3">
+                    Contact Gcinile’s Salon
+                </h2>
+                <p class="text-neutral-500 text-sm sm:text-base">
+                    Have questions about braid colours, hairpiece packs, or group bookings? Reach out to us directly.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Card 1: Phone & WhatsApp -->
+                <div class="bg-ivory p-8 rounded-2xl border border-neutral-200/70 text-center hover:border-gold transition-colors">
+                    <div class="w-14 h-14 rounded-2xl bg-obsidian text-gold flex items-center justify-center mx-auto mb-5 shadow-md">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-obsidian mb-2">WhatsApp & Calls</h3>
+                    <p class="text-sm text-neutral-600 mb-1 font-medium">Primary: 079 439 7018</p>
+                    <p class="text-sm text-neutral-500 mb-5">Alternative: 066 490 6569</p>
+                    <a href="https://wa.me/27794397018?text=Hello%20Gcinile's%20Salon%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-dark hover:text-obsidian transition-colors">
+                        <span>Start WhatsApp Chat</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2: Opening Hours (Matches Salon Signage) -->
+                <div class="bg-ivory p-8 rounded-2xl border border-neutral-200/70 text-center hover:border-gold transition-colors">
+                    <div class="w-14 h-14 rounded-2xl bg-obsidian text-gold flex items-center justify-center mx-auto mb-5 shadow-md">
+                        <i class="fa-regular fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-obsidian mb-2">Trading Hours</h3>
+                    <p class="text-sm text-neutral-600 font-medium mb-1">Tuesday – Sunday: 08:00 – 18:00</p>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-rose-600 bg-rose-50 inline-block px-3 py-1 rounded-full mt-2">
+                        Closed on Mondays
+                    </p>
+                </div>
+
+                <!-- Card 3: Studio Appointments -->
+                <div class="bg-ivory p-8 rounded-2xl border border-neutral-200/70 text-center hover:border-gold transition-colors">
+                    <div class="w-14 h-14 rounded-2xl bg-obsidian text-gold flex items-center justify-center mx-auto mb-5 shadow-md">
+                        <i class="fa-solid fa-crown text-2xl"></i>
+                    </div>
+                    <h3 class="font-display text-lg font-bold text-obsidian mb-2">Walk-Ins & Bookings</h3>
+                    <p class="text-sm text-neutral-600 mb-4 leading-relaxed">
+                        Priority seating is given to scheduled WhatsApp appointments. Walk-ins welcome based on stylist availability.
+                    </p>
+                    <a href="#booking" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-dark hover:text-obsidian transition-colors">
+                        <span>Reserve Your Seat</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LUXURY FOOTER ==================== -->
+    <footer class="bg-obsidian text-white pt-16 pb-10 border-t border-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 pb-10 border-b border-white/10">
+                
+                <!-- Footer Brand -->
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2.5 mb-2">
+                        <i class="fa-solid fa-crown text-gold"></i>
+                        <span class="font-display text-xl font-bold tracking-wider">GCINILE’S <span class="text-gold">SALON</span></span>
+                    </div>
+                    <p class="text-xs text-neutral-400 tracking-wide">Beauty • Confidence • Elegance — Designed for Queens</p>
+                </div>
+
+                <!-- Footer Quick Navigation -->
+                <div class="flex flex-wrap justify-center gap-6 text-sm text-neutral-300">
+                    <a href="#home" class="hover:text-gold transition-colors">Home</a>
+                    <a href="#about" class="hover:text-gold transition-colors">About</a>
+                    <a href="#services" class="hover:text-gold transition-colors">Services</a>
+                    <a href="#booking" class="hover:text-gold transition-colors">Booking</a>
+                    <a href="#contacts" class="hover:text-gold transition-colors">Contacts</a>
+                </div>
+
+                <!-- WhatsApp Floating-Style Button in Footer -->
+                <div>
+                    <a href="https://wa.me/27794397018" target="_blank" class="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1fb858] text-white text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-full transition-colors">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>WhatsApp Us</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center text-xs text-neutral-500">
+                <p>© 2026 Gcinile’s Hair Beauty Salon | Designed for Queens 👑</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== IMAGE LIGHTBOX MODAL ==================== -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeLightbox(event)">
+        <div class="relative max-w-xl w-full bg-charcoal rounded-2xl overflow-hidden border border-gold/30 shadow-2xl" onclick="event.stopPropagation()">
+            <button type="button" onclick="closeLightbox()" aria-label="Close Preview" class="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-black/70 text-white hover:bg-gold hover:text-obsidian flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="max-h-[72vh] overflow-hidden bg-black flex items-center justify-center">
+                <img id="lightboxImg" src="" alt="Hairstyle Preview" class="w-full h-auto max-h-[72vh] object-contain">
+            </div>
+            <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-obsidian text-white">
+                <div>
+                    <h4 id="lightboxTitle" class="font-display text-lg font-bold text-white"></h4>
+                    <p id="lightboxPrice" class="text-gold text-sm font-semibold"></p>
+                </div>
+                <button type="button" id="lightboxBookBtn" class="bg-gold hover:bg-gold-light text-obsidian font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition-colors">
+                    Book This Style
+                </button>
+            </div>
+        </div>
     </div>
-</section>
 
-<section class="section" id="booking">
-    <h2>Book Appointment</h2>
+    <!-- ==================== JAVASCRIPT INTERACTIVITY ==================== -->
+    <script>
+        const phone = "27794397018";
 
-    <form>
-        <label>Name</label>
-        <input type="text" id="name" required>
+        // 1. Mobile Hamburger Menu Toggle
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const menuIcon = document.getElementById("menuIcon");
 
-        <label>Surname</label>
-        <input type="text" id="surname" required>
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+            if (mobileMenu.classList.contains("hidden")) {
+                menuIcon.classList.replace("fa-xmark", "fa-bars");
+            } else {
+                menuIcon.classList.replace("fa-bars", "fa-xmark");
+            }
+        });
 
-        <label>Hairstyle</label>
-        <select id="style">
-            <option>Royal Knotless Braids</option>
-            <option>Curly Ponytail Weave</option>
-            <option>Designer Stitch Braids</option>
-        </select>
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll(".mobile-nav-item").forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+                menuIcon.classList.replace("fa-xmark", "fa-bars");
+            });
+        });
 
-        <label>Date</label>
-        <input type="date" id="date" required>
+        // 2. Scrollspy Active Navigation Highlighting
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
 
-        <label>Time</label>
-        <input type="time" id="time" required>
+        window.addEventListener("scroll", () => {
+            let currentSection = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 130;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute("id");
+                }
+            });
 
-        <button type="button" class="btn" onclick="book()">Book via WhatsApp</button>
-        <button type="button" class="btn" style="background:#888;margin-top:10px;" onclick="cancel()">Cancel Appointment</button>
-    </form>
-</section>
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${currentSection}`) {
+                    link.classList.add("active");
+                }
+            });
+        });
 
-<footer>
-    <p>© 2026 Gcinile’s Hair Beauty Salon | Designed for Queens 👑</p>
-</footer>
+        // 3. Hairstyle Category Filter
+        function filterStyles(category, btnElement) {
+            // Update active button styling
+            document.querySelectorAll(".filter-btn").forEach(btn => {
+                btn.classList.remove("bg-obsidian", "text-white", "shadow-sm");
+                btn.classList.add("bg-sand", "text-neutral-700");
+            });
+            btnElement.classList.remove("bg-sand", "text-neutral-700");
+            btnElement.classList.add("bg-obsidian", "text-white", "shadow-sm");
 
-<script>
-const phone="27794397018";
+            // Show/hide cards
+            const cards = document.querySelectorAll(".style-card");
+            cards.forEach(card => {
+                if (category === "all" || card.dataset.category === category) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
 
-function selectStyle(style){
-    document.getElementById("booking").scrollIntoView({behavior:"smooth"});
-    document.getElementById("style").value = style;
-}
+        // 4. Image Lightbox Modal
+        function openLightbox(imgSrc, title, price) {
+            const modal = document.getElementById("lightboxModal");
+            document.getElementById("lightboxImg").src = imgSrc;
+            document.getElementById("lightboxTitle").textContent = title;
+            document.getElementById("lightboxPrice").textContent = price;
 
-function book(){
-    const name=document.getElementById("name").value;
-    const surname=document.getElementById("surname").value;
-    const style=document.getElementById("style").value;
-    const date=document.getElementById("date").value;
-    const time=document.getElementById("time").value;
+            const bookBtn = document.getElementById("lightboxBookBtn");
+            bookBtn.onclick = () => {
+                closeLightbox();
+                selectStyle(title);
+            };
 
-    if(!name||!surname||!date||!time){
-        alert("Please fill all fields");
-        return;
-    }
+            modal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
 
-    const msg=encodeURIComponent(
+        function closeLightbox() {
+            const modal = document.getElementById("lightboxModal");
+            modal.classList.add("hidden");
+            document.body.style.overflow = "";
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") closeLightbox();
+        });
+
+        // 5. Inline Notification Helper (Replaces alert())
+        function showMessage(text, type = "warning") {
+            const box = document.getElementById("notification-box");
+            box.textContent = text;
+            box.classList.remove("hidden", "bg-amber-50", "text-amber-800", "border-amber-200", "bg-emerald-50", "text-emerald-800", "border-emerald-200");
+
+            if (type === "success") {
+                box.classList.add("bg-emerald-50", "text-emerald-800", "border-emerald-200");
+            } else {
+                box.classList.add("bg-amber-50", "text-amber-800", "border-amber-200");
+            }
+
+            setTimeout(() => {
+                box.classList.add("hidden");
+            }, 5000);
+        }
+
+        // 6. Select Hairstyle & Scroll to Booking Form
+        function selectStyle(styleName) {
+            const styleSelect = document.getElementById("style");
+            styleSelect.value = styleName;
+            document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+            showMessage(`Selected "${styleName}". Please choose your date and time below.`, "success");
+        }
+
+        // 7. WhatsApp Booking Handler
+        function book() {
+            const name = document.getElementById("name").value.trim();
+            const surname = document.getElementById("surname").value.trim();
+            const style = document.getElementById("style").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+            const notes = document.getElementById("notes").value.trim();
+
+            if (!name || !surname || !date || !time) {
+                showMessage("Please fill in your First Name, Surname, Preferred Date, and Time before booking.");
+                return;
+            }
+
+            const notesLine = notes ? `\nNotes: ${notes}` : "";
+
+            const msg = encodeURIComponent(
 `Hello Gcinile's Salon,
 
 BOOKING REQUEST:
 Name: ${name} ${surname}
 Style: ${style}
 Date: ${date}
-Time: ${time}
+Time: ${time}${notesLine}
 
 Please confirm availability. Thank you.`
-    );
+            );
 
-    window.open(`https://wa.me/${phone}?text=${msg}`);
-}
+            window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+        }
 
-function cancel(){
-    const name=document.getElementById("name").value;
-    const surname=document.getElementById("surname").value;
+        // 8. WhatsApp Cancellation Handler
+        function cancel() {
+            const name = document.getElementById("name").value.trim();
+            const surname = document.getElementById("surname").value.trim();
 
-    const msg=encodeURIComponent(
+            if (!name || !surname) {
+                showMessage("Please enter your First Name and Surname to request a cancellation.");
+                return;
+            }
+
+            const msg = encodeURIComponent(
 `Hello Gcinile's Salon,
 
 CANCELLATION REQUEST:
 Name: ${name} ${surname}
 
 Please cancel my appointment.`
-    );
+            );
 
-    window.open(`https://wa.me/${phone}?text=${msg}`);
-}
-</script>
-
+            window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+        }
+    </script>
 </body>
 </html>
